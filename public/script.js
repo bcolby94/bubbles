@@ -38,7 +38,7 @@ const init = () => {
       const areaNum = `x${num}`;
       const areaDOM = document.getElementById(areaNum);
       document.getElementById(areaNum).innerHTML = ``;
-      areaDOM.innerHTML = parsedData.alert;
+      areaDOM.textContent = parsedData.alert;
       msg = new SpeechSynthesisUtterance();
       msg.text = parsedData.alert;
       window.speechSynthesis.speak(msg);
