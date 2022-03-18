@@ -37,6 +37,7 @@ const init = () => {
       const num = Math.floor((Math.random() * 9) + 1);
       const areaNum = `x${num}`;
       const areaDOM = document.getElementById(areaNum);
+      document.getElementById(areaNum).innerHTML = ``;
       areaDOM.innerHTML = parsedData.alert;
       msg = new SpeechSynthesisUtterance();
       msg.text = parsedData.alert;
@@ -55,6 +56,7 @@ const init = () => {
       container.innerHTML = `
         <iframe height="100%" width="100%" src="${videoLink}" allow="autoplay; encrypted-media" allowfullscreen />
       `;
+      document.getElementById(areaNum).innerHTML = ``;
       document.getElementById(areaNum).appendChild(container);
     /* End */
     }
