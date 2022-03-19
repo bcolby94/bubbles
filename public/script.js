@@ -34,7 +34,7 @@ const init = () => {
 
     /* Inserts regular messages into DOM */
     if (parsedData.alert) {
-      const num = Math.floor((Math.random() * 9) + 1);
+      const num = Math.floor((Math.random() * 10) + 1);
       const areaNum = `x${num}`;
       const areaDOM = document.getElementById(areaNum);
       document.getElementById(areaNum).innerHTML = ``;
@@ -48,7 +48,7 @@ const init = () => {
     /* Inserts video messages into DOM */
     if (parsedData.html) {
       newVideo = parsedData.html;
-      const num = Math.floor((Math.random() * 9) + 1);
+      const num = Math.floor((Math.random() * 10) + 1);
       const areaNum = `x${num}`;
       const container = document.createElement('div');
       container.setAttribute('id', newVideo);
