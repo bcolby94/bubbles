@@ -5,6 +5,7 @@ const webServer = http.createServer(app);
 const cors = require('cors');
 const WebSocketServer = require('ws').Server;
 const clients = new Map();
+const throttledUsers = new Set();
 const ws = new WebSocketServer({
   server: webServer,
 });
@@ -21,6 +22,14 @@ ws.on('connection', function connection(ws, req) {
     IP: clientIP,
   });
   ws.on('message', function incoming(message) {
+  if (throttledUsers.has(iden)) {
+    console.log("rate limited");
+    return;
+  }
+  // spam prevention
+  throttledUsers.add(iden);
+  clearThrottles(iden);
+
     message = message.toString();
     if(message.slice(0, 4) == "http"){
       wsHtml(message);
@@ -56,8 +65,15 @@ const wsHtml = (link) => {
       wsBroadcast(newData);
   }
 
+const clearThrottles = (iden) => {
+  setTimeout(function () {
+      throttledUsers.delete(iden);
+      console.log(throttledUsers);
+  }, 1000);
+}
+
 app.use(cors());
 app.use('/', express.static(__dirname + '/public/'));
-webServer.listen(7004, function listening() {
+webServer.listen(80, function listening() {
   console.log('Listening on %d', webServer.address().port);
 });
