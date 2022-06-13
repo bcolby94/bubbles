@@ -22,11 +22,10 @@ ws.on('connection', function connection(ws, req) {
     IP: clientIP,
   });
   ws.on('message', function incoming(message) {
+  // spam prevention
   if (throttledUsers.has(iden)) {
-    console.log("rate limited");
     return;
   }
-  // spam prevention
   throttledUsers.add(iden);
   clearThrottles(iden);
 
