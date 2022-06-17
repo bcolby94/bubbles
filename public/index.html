@@ -12,11 +12,13 @@
 
 <body>
     <div class="row">
-        <div id="chatbar" class="col-sm-11">
-            <input id="content" placeholder="Type message or insert YouTube link here..."></input>
-            </div>
-        <div class="send col-sm-1">
+        <div id="chatbar" class="col-sm-8 c-input">
+            <input id="content" class="c-input" placeholder="Type message or insert YouTube link here..."></input>
+        </div>
+        <div class="send col-sm-2">
             <button class="btn btn-dark" onClick="emitPost()">Send</button>
+            
+            <input type="checkbox" onchange="toggleAuto()" name="autoplay" checked="true" style="margin:5px;">Autoplay videos</input>
         </div>
     </div>
 

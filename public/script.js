@@ -1,4 +1,5 @@
 let socket;
+let autoplay = true;
 
 const emitPost = () => {
   if (socket.readyState !== 1) {
@@ -52,7 +53,12 @@ const init = () => {
       const areaNum = `x${num}`;
       const container = document.createElement('div');
       container.setAttribute('id', newVideo);
-      videoLink = `https://www.youtube.com/embed/${newVideo}?autoplay=1`;
+      if(autoplay) {
+        videoLink = `https://www.youtube.com/embed/${newVideo}?autoplay=1`;
+      } else {
+        videoLink = `https://www.youtube.com/embed/${newVideo}`;
+      }
+      
       container.innerHTML = `
         <iframe height="100%" width="100%" src="${videoLink}" allow="autoplay; encrypted-media" allowfullscreen />
       `;
@@ -66,5 +72,14 @@ const init = () => {
       console.log('client connected successfully');
     };
   }
+
+const toggleAuto = () => {
+  if(autoplay) {
+    autoplay = false;
+  } else {
+    autoplay = true;
+  }
+  console.log(autoplay);
+}
 
 init();
